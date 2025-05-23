@@ -1,29 +1,32 @@
+* {
+  font-family: Custom;
+}
+
 
 body {
-  font-family: 'Segoe UI', sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f5f7fa;
   color: #333;
 }
-
-header {
-  background: #99e09d;
-  color: white;
-  display: flex;
-  align-items: center;
-  padding: 20px 40px;
-  gap: 20px;
+footer{
+  position: fixed;
+  margin-bottom: 0;
+  width: 100%;
+  
 }
 
-header img {
+header, footer{
+  background: linear-gradient(90deg, #00ff9e, #278e97); /*gradient zamiast solid color- Cody*/
+  display: grid; /*zmiana z flex na grid z uwagi na małą ilość elementów - Cody*/
+  justify-content: center;
+  padding: 20px 40px;
+
+}
+/*zastąpienie img na ID elementu - Cody*/
+header #logo {
   height: 60px;
   width: auto;
-}
-
-header h1 {
-  font-size: 32px;
-  margin: 0;
 }
 
 #controls {
@@ -104,3 +107,13 @@ header h1 {
 .restaurant-card .order-btn:hover {
   background-color: #e65100;
 }
+
+@font-face {
+  font-family: 'Custom'; 
+  /*src: url('/assets/fonts/Nunito/static/Nunito-Bold.ttf') format('truetype');*/
+   /* TUTAJ CZCIONA ZAKOMENTOWANA ZEBY LATWIEJ BYŁO ZMIENIC*/
+  src: url('/assets/fonts/Ubuntu/Ubuntu-Bold.ttf') format('truetype');  
+  font-weight: normal;
+  font-style: normal;
+}
+
