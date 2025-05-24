@@ -10,6 +10,7 @@ Projekt na zaliczenie przedmiotu "Projektowanie serwisów internetowych".
 - [ ] Stylizacja kart z restauracjami
 - [ ] Pinezka na mapie ma wyświetlać godziny otwarcia i adres restauracji
 ### Features:
+- [x] Dodano formularz do logowania bez backendu
 - [ ] about.html - opis firmy, przesłanie, misja, kontaktowe info (html-adress), formularz kontaktowy(html-form)
 - [ ] user.html - panel z zamówieniami, panel z rezerwacjami, historia zamówień i rezerwacji, ustawienia
 - [ ] index.html - logowanie
