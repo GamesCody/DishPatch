@@ -2,32 +2,110 @@
   font-family: Custom;
 }
 
-
 body {
   margin: 0;
   padding: 0;
   background-color: #f5f7fa;
   color: #333;
 }
-footer{
+footer {
   position: fixed;
-  margin-bottom: 0;
+  bottom: 0;
+  left: 0;
   width: 100%;
-  
+  background: linear-gradient(90deg, #00ff9e, #278e97);
+  padding: 15px;
+  z-index:1001;
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;
+}
+#logowanie{
+  background-color: rgba(92, 153, 159, 0.21);
+  place-items: center;
+  display: grid;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: left;
+  justify-items: start;
+  border: 2px solid #49954f;
+  position: absolute;
+  right:10px;
+  top: 7rem;
 }
 
-header, footer{
-  background: linear-gradient(90deg, #00ff9e, #278e97); /*gradient zamiast solid color- Cody*/
-  display: grid; /*zmiana z flex na grid z uwagi na małą ilość elementów - Cody*/
-  justify-content: center;
+.button{
+  padding: 2px;
+  margin: 5px;
+  width: fit-content;
+  height: fit-content;
+  background-color: rgba(0, 255, 158, 0.45);
+  border-radius: 5px;
+  margin-left: 50px;
+  border: 1px solid #278e97;
+}
+.input{
+  border-radius: 10px;
+  height: 1.25rem;
+  font-size: 1rem;
+  border: none;
+  background-color: rgba(0, 255, 158, 0.45);
+  width:10rem;
+  
+}
+.label{
+  align-items: left;
+}
+
+header{
+  background: linear-gradient(90deg, #00ff9e, #278e97);
+  display: flex;
+  align-items: center; /* Wyśrodkowanie pionowe */
+  justify-content: space-between;
   padding: 20px 40px;
 
 }
-/*zastąpienie img na ID elementu - Cody*/
-header #logo {
+#form{
+  display: none;
+}
+
+#logo {
   height: 60px;
   width: auto;
+  margin: 0 auto;
 }
+
+#loginIcon {
+  height: 45px;
+  width: auto;
+}
+.login {
+    display: grid;
+    justify-items: center;
+}
+@keyframes fadeInTooltip {
+    0% { opacity: 0; transform: translateY(5px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.tooltip {
+    position: absolute;
+    margin-top: 3rem;
+    color: aliceblue;
+    background-color: #526e63;
+    font-size: 14px;
+    padding: 8px;
+    border-radius: 10px;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.login:hover .tooltip {
+  visibility: visible;
+  animation: fadeInTooltip 0.3s ease-out forwards;
+  animation-delay: 0.5s;/* "forwards" keeps the final state */
+}
+
 
 #controls {
   padding: 20px 40px;
@@ -95,6 +173,7 @@ header #logo {
   height: 500px;
   width: calc(100% - 80px);
   margin: 20px 40px;
+  margin-bottom: 4rem;
   border-radius: 12px;
   overflow: hidden;
 }
