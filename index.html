@@ -12,7 +12,20 @@
 <body>
     <header>
       <img id="logo" src="assets/graphics/images/logo.png" alt="logo"> 
-      <!-- dodano ID do stylizacji elementu - Cody -->
+      <div class ="login">
+       <img id="loginIcon" src="assets/graphics/icons/black/acc_ico_bl.png" alt="login">
+       <div class="tooltip">Moje konto</div>
+      </div>
+      <div id="form">
+        <form id="logowanie">
+          <label class="label" for="login/email">Podaj adres e-mail:</label><br>
+          <input class="input" type="text" id="email" name="email"><br>
+          <label class="label" for="password">Hasło:</label><br>
+          <input class="input" type="password" id="password" name="password">
+          <input class="button" type="submit" value="Zaloguj">
+        </form>
+      </div>
+      <!-- dodano Ikonę do panelu klienta i logowania - Cody -->
     </header>
   <div id="controls">
     <h2>Wybierz miasto</h2>
@@ -25,6 +38,9 @@
 
     <div id="restaurantList"></div>
   </div>
+  <footer>
+  <div>&copy; DishPatch 2025</div>
+  </footer>
 
   <div id="map"></div>
 

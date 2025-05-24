@@ -406,3 +406,14 @@ style.textContent = `
   }
 `;
 document.head.appendChild(style);
+
+//wyświetl okno do logowania
+
+document.getElementById('loginIcon').addEventListener('click', function () {
+   const loginForm = document.getElementById('form');
+    if (loginForm.style.display === 'none' || loginForm.style.display === '') {
+    loginForm.style.display = 'block';
+  } else {
+    loginForm.style.display = 'none';
+  }
+});
