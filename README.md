@@ -50,3 +50,8 @@ control
 http://localhost/DishPatch/
 ```
 Zwróć uwagę na to, że możliwe, że trzeba będzie dopasować ścieżkę.
+## Baza danych
+```
+http://localhost/phpmyadmin/index.php
+```
+W XAMPP user to root, hasła domyślnie nie potrzeba.
