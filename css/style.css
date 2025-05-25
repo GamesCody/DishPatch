@@ -1,13 +1,11 @@
-* {
-  font-family: Custom;
-}
-
 body {
   margin: 0;
   padding: 0;
   background-color: #f5f7fa;
   color: #333;
+  font-family: 'Custom', sans-serif;
 }
+
 footer {
   position: fixed;
   bottom: 0;
@@ -15,12 +13,14 @@ footer {
   width: 100%;
   background: linear-gradient(90deg, #00ff9e, #278e97);
   padding: 15px;
-  z-index:1001;
+  z-index: 1001;
   display: flex;
-  justify-content: center; /* Centers horizontally */
+  justify-content: center;
   align-items: center;
 }
-#logowanie{
+
+#logowanie,
+#rejestracja {
   background-color: rgba(92, 153, 159, 0.21);
   place-items: center;
   display: grid;
@@ -30,47 +30,100 @@ footer {
   justify-items: start;
   border: 2px solid #49954f;
   position: absolute;
-  right:10px;
-  top: 7rem;
 }
 
-.button{
-  padding: 2px;
-  margin: 5px;
+#logowanie {
+  right: 1rem;
+  top: 9rem;
+  z-index:1001;
+}
+
+#rejestracja {
+  right: 9rem;
+  top: 9rem;
+  z-index:1001;
+}
+
+#logreg {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 7rem;
+  right: 2rem;
+  background-color: rgba(92, 153, 159, 0.95);
+  border: 2px solid #49954f;
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1000;
+  width: 7rem;
+}
+
+#logreg.visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+#logreg .button,
+.button {
+  background-color: rgba(0, 255, 158, 0.45);
+  border: 1px solid #278e97;
+  border-radius: 6px;
+  padding: 8px 16px;
+  color: #1c1c1c;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
   width: fit-content;
   height: fit-content;
-  background-color: rgba(0, 255, 158, 0.45);
-  border-radius: 5px;
-  margin-left: 50px;
-  border: 1px solid #278e97;
 }
-.input{
+
+#logreg .button:hover,
+.button:hover {
+  background-color: #00ff9e;
+}
+
+.input {
   border-radius: 10px;
   height: 1.25rem;
   font-size: 1rem;
   border: none;
   background-color: rgba(0, 255, 158, 0.45);
-  width:10rem;
-  
+  width: 10rem;
 }
-.label{
+
+.label {
   align-items: left;
 }
 
-header{
+header {
   background: linear-gradient(90deg, #00ff9e, #278e97);
   display: flex;
-  align-items: center; /* Wyśrodkowanie pionowe */
+  align-items: center;
   justify-content: space-between;
   padding: 20px 40px;
+}
 
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  visibility: hidden;
 }
-#form{
-  display: none;
+.form.visible {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
+
 
 #logo {
-  height: 60px;
+  height: 100px;
   width: auto;
   margin: 0 auto;
 }
@@ -78,34 +131,37 @@ header{
 #loginIcon {
   height: 45px;
   width: auto;
+  cursor: pointer;
 }
+
 .login {
-    display: grid;
-    justify-items: center;
+  display: grid;
+  justify-items: center;
 }
+
 @keyframes fadeInTooltip {
-    0% { opacity: 0; transform: translateY(5px); }
-    100% { opacity: 1; transform: translateY(0); }
+  0% { opacity: 0; transform: translateY(5px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 .tooltip {
-    position: absolute;
-    margin-top: 3rem;
-    color: aliceblue;
-    background-color: #526e63;
-    font-size: 14px;
-    padding: 8px;
-    border-radius: 10px;
-    opacity: 0;
-    visibility: hidden;
+  position: absolute;
+  margin-top: 3rem;
+  color: aliceblue;
+  background-color: #526e63;
+  font-size: 14px;
+  padding: 8px;
+  border-radius: 10px;
+  opacity: 0;
+  visibility: hidden;
 }
 
-.login:hover .tooltip {
+.licon:hover + .tooltip {
   visibility: visible;
+  opacity: 1;
   animation: fadeInTooltip 0.3s ease-out forwards;
-  animation-delay: 0.5s;/* "forwards" keeps the final state */
+  animation-delay: 0.5s;
 }
-
 
 #controls {
   padding: 20px 40px;
@@ -168,7 +224,6 @@ header{
   background-color: #145118;
 }
 
-
 #map {
   height: 500px;
   width: calc(100% - 80px);
@@ -177,6 +232,7 @@ header{
   border-radius: 12px;
   overflow: hidden;
 }
+
 .restaurant-card .order-btn {
   background-color: #52a03f;
   margin-top: 10px;
@@ -188,11 +244,8 @@ header{
 }
 
 @font-face {
-  font-family: 'Custom'; 
-  /*src: url('/assets/fonts/Nunito/static/Nunito-Bold.ttf') format('truetype');*/
-   /* TUTAJ CZCIONA ZAKOMENTOWANA ZEBY LATWIEJ BYŁO ZMIENIC*/
-  src: url('/assets/fonts/Ubuntu/Ubuntu-Bold.ttf') format('truetype');  
+  font-family: 'Custom';
+  src: url('/DishPatch/assets/fonts/Ubuntu/Ubuntu-Bold.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
-
