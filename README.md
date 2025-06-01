@@ -1,5 +1,6 @@
 # Dish Patch
 Projekt na zaliczenie przedmiotu "Projektowanie serwisów internetowych".
+- [] - zrobić backup bazy danych
 
 ---
 # Budowanie projektu
