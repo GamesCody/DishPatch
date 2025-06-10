@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header('Location: ../index.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -28,19 +35,14 @@
     </div>
   </main>
   <script>
-    // Domyślny czas sesji (np. 20 minut = 1200 sekund)
-    const SESSION_TIME = 300; // zmień tutaj na inny czas jeśli chcesz
+    const SESSION_TIME = 300;
     let sessionSeconds = SESSION_TIME;
-
     function resetSessionTimer() {
       sessionSeconds = SESSION_TIME;
     }
-
-    // Resetuj czas sesji przy aktywności użytkownika
     ['mousemove', 'keydown', 'mousedown', 'touchstart'].forEach(event => {
       document.addEventListener(event, resetSessionTimer);
     });
-
     function updateTimer() {
       const min = Math.floor(sessionSeconds / 60);
       const sec = sessionSeconds % 60;

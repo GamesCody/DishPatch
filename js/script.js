@@ -6,14 +6,22 @@ const cityCoords = {
 
 const restaurantData = {
   warszawa: [
-    { name: "Restauracja Polska", coords: [52.2297, 21.0122], link: "/rezerwacja/polska" },
-    { name: "Pizza Max", coords: [52.2300, 21.0150], link: "/rezerwacja/pizzamax" }
+    { name: "Restauracja Polska", coords: [52.2297, 21.0122], link: "/rezerwacja/polska", hours: "10:00-22:00" },
+    { name: "Pizza Max", coords: [52.2300, 21.0150], link: "/rezerwacja/pizzamax", hours: "11:00-23:00" },
+    { name: "Sushi Sakura", coords: [52.2285, 21.0080], link: "/rezerwacja/sakura", hours: "12:00-21:00" },
+    { name: "Burger House", coords: [52.2320, 21.0180], link: "/rezerwacja/burgerhouse", hours: "09:00-20:00" }
   ],
   krakow: [
-    { name: "Pierogarnia Krakowska", coords: [50.0650, 19.9455], link: "/rezerwacja/pierogi" }
+    { name: "Pierogarnia Krakowska", coords: [50.0650, 19.9455], link: "/rezerwacja/pierogi", hours: "10:00-22:00" },
+    { name: "Wawel Bistro", coords: [50.0614, 19.9372], link: "/rezerwacja/wawel", hours: "11:00-21:00" },
+    { name: "Kraków Grill", coords: [50.0670, 19.9420], link: "/rezerwacja/grill", hours: "12:00-23:00" },
+    { name: "Cafe Rynek", coords: [50.0640, 19.9450], link: "/rezerwacja/cafe", hours: "08:00-20:00" }
   ],
   czestochowa: [
-    { name: "Czeski Film Pub & Restauracja", coords: [50.8116, 19.1141], link: "/rezerwacja/pub" }
+    { name: "Czeski Film Pub & Restauracja", coords: [50.8116, 19.1141], link: "/rezerwacja/pub", hours: "10:00-22:00" },
+    { name: "Jasna Góra Bistro", coords: [50.8120, 19.1150], link: "/rezerwacja/jasnagora", hours: "09:00-21:00" },
+    { name: "Pizza Często", coords: [50.8100, 19.1120], link: "/rezerwacja/pizzaczesto", hours: "11:00-23:00" },
+    { name: "Restauracja Aleja", coords: [50.8130, 19.1160], link: "/rezerwacja/aleja", hours: "12:00-22:00" }
   ]
 };
 
@@ -68,13 +76,14 @@ function displayRestaurants(city) {
       <h3>${restaurant.name}</h3>
       <a href="${restaurant.link}" class="btn">Zarezerwuj stolik</a>
       <button class="btn order-btn" data-name="${restaurant.name}">Zamów jedzenie</button>
+      <div class="restaurant-hours">Godziny otwarcia: ${restaurant.hours}</div>
     `;
     restaurantList.appendChild(card);
 
     // Dodanie markera na mapę
     if (map) {
       const marker = L.marker(restaurant.coords).addTo(map)
-        .bindPopup(`<b>${restaurant.name}</b><br><a href="${restaurant.link}">Zarezerwuj</a>`);
+        .bindPopup(`<b>${restaurant.name}</b><br>Godziny otwarcia: ${restaurant.hours}<br><a href="${restaurant.link}">Zarezerwuj</a>`);
       currentMarkers.push(marker);
     }
   });
@@ -145,20 +154,105 @@ style.textContent = `
 
 document.head.appendChild(style);
 
-//wyświetl okno do logowania
 
-document.getElementById('loginIcon').addEventListener('click', function () {
-  const loginregister = document.getElementById('logreg');
-  loginregister.classList.toggle('visible');
-});
+// AJAX obsługa rejestracji (nowy formularz)
+const regForm = document.getElementById('registrationForm');
+if (regForm) {
+  regForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    // Pobierz token reCAPTCHA v2 z pola formularza
+    const recaptchaToken = document.querySelector('#registrationForm [name="g-recaptcha-response"]').value;
+    if (!recaptchaToken) {
+      alert('Potwierdź reCAPTCHA.');
+      return;
+    }
+    const formData = new FormData(regForm);
+    formData.append('action', 'register');
+    formData.append('recaptcha', recaptchaToken);
+    fetch('api/auth.php', {
+      method: 'POST',
+      body: formData
+    })
+      .then(res => res.json())
+      .then(data => {
+        alert(data.message);
+        if (data.success) {
+          regForm.reset();
+          document.getElementById('registerForm').style.visibility = 'hidden';
+        }
+      })
+      .catch(() => alert('Błąd połączenia z serwerem.'));
+  });
+}
 
-document.getElementById('login').addEventListener('click', function () {
-  const loginForm = document.getElementById('log');
-  loginForm.classList.toggle('visible');
-});
+// AJAX obsługa logowania
+const logForm = document.querySelector('form#loginForm');
+if (logForm) {
+  logForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    // Pobierz token reCAPTCHA v2 z pola formularza
+    const recaptchaToken = document.querySelector('#loginForm [name="g-recaptcha-response"]').value;
+    if (!recaptchaToken) {
+      alert('Potwierdź reCAPTCHA.');
+      return;
+    }
+    const formData = new FormData(logForm);
+    formData.append('action', 'login');
+    formData.append('recaptcha', recaptchaToken);
+    fetch('api/auth.php', {
+      method: 'POST',
+      body: formData
+    })
+      .then(res => res.json())
+      .then(data => {
+        alert(data.message);
+        if (data.success) {
+          logForm.reset();
+          document.getElementById('loginForm').style.visibility = 'hidden';
+          window.location.href = 'subsites/user.html';
+        }
+      })
+      .catch(() => alert('Błąd połączenia z serwerem.'));
+  });
+}
 
-document.getElementById('register').addEventListener('click', function () {
-  const registerForm = document.getElementById('reg');
-  registerForm.classList.toggle('visible');
-});
+function openMenu() {
+    document.getElementById('menu').style.visibility = 'visible';
+}
+function closeMenu() {
+    document.getElementById('menu').style.visibility = 'hidden';
+}
+function openContactInfo() {
+    document.getElementById('contactCard').style.visibility = 'visible';
+}
+function closeContactInfo() {
+    document.getElementById('contactCard').style.visibility = 'hidden';
+}
+function openRegisterForm() {
+    document.getElementById('registerForm').style.visibility = 'visible';
+}
+function closeRegisterForm() {
+    document.getElementById('registerForm').style.visibility = 'hidden';
+}
+function openLoginForm() {
+    document.getElementById('loginForm').style.visibility = 'visible';
+}
+function closeLoginForm() {
+    document.getElementById('loginForm').style.visibility = 'hidden';
+}
 
+function openNewTab() {
+    window.open("http://localhost/DishPatch/subsites/about.html", "_blank");
+}
+
+function togglePassword(passwordInputId, btn) {
+  const passwordInput = document.getElementById(passwordInputId);
+  if (!passwordInput) return;
+  if (passwordInput.type === 'password') {
+    passwordInput.type = 'text';
+    btn.textContent = '🙈';
+  } else {
+    passwordInput.type = 'password';
+    btn.textContent = '👁️';
+  }
+}
