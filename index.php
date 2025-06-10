@@ -8,7 +8,7 @@ include 'includes/connect.php';
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="icon" href="assets/graphics/images/favicon.png" sizes="48x48" type="image/png" />
   <title>Dish Patch</title>
-<<<<<<< HEAD
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
   <link rel="stylesheet" href="css/style.css"/>
@@ -198,7 +198,6 @@ include 'includes/connect.php';
 
   </main>
 
-=======
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
   <link rel="stylesheet" href="css/style.css"/>
 </head>
@@ -253,7 +252,7 @@ include 'includes/connect.php';
 
     <div id="restaurantList"></div>
   </div>
->>>>>>> 5b57ec690160374c0b6f3e37eea7db78fae3cd5f
+
   <footer>
   <div>&copy; DishPatch 2025</div>
   </footer>
@@ -262,7 +261,7 @@ include 'includes/connect.php';
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="js/script.js"></script>
-<<<<<<< HEAD
+
   <script>
     function handleGoogleSignIn(response) {
       // Przykład: wyślij token do backendu AJAXem
@@ -271,9 +270,7 @@ include 'includes/connect.php';
       window.location.href = 'subsites/user.html';
     }
   </script>
-=======
-  
->>>>>>> 5b57ec690160374c0b6f3e37eea7db78fae3cd5f
+
 
 </body>
 </html>
