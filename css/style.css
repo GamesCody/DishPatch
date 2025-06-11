@@ -14,8 +14,6 @@ footer {
   background: linear-gradient(90deg, #00ff9e, #278e97);
   padding: 15px;
   z-index: 1001;
-<<<<<<< HEAD
-=======
   display: flex;
   justify-content: center;
   align-items: center;
@@ -185,7 +183,6 @@ header {
 }
 
 #restaurantList {
->>>>>>> 5b57ec690160374c0b6f3e37eea7db78fae3cd5f
   display: flex;
   justify-content: center;
   align-items: center;
@@ -335,10 +332,8 @@ textarea {
   padding: 15px 30px;
   border: none;
   border-radius: 8px;
-<<<<<<< HEAD
   font-size: 18px;
   font-weight: bold;
-=======
   text-decoration: none;
   font-size: 14px;
   display: inline-block;
@@ -361,7 +356,6 @@ textarea {
 .restaurant-card .order-btn {
   background-color: #52a03f;
   margin-top: 10px;
->>>>>>> 5b57ec690160374c0b6f3e37eea7db78fae3cd5f
   cursor: pointer;
   width: 100%;
   transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
@@ -403,8 +397,4 @@ textarea {
   src: url('/DishPatch/assets/fonts/Ubuntu/Ubuntu-Bold.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 5b57ec690160374c0b6f3e37eea7db78fae3cd5f

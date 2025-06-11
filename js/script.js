@@ -154,7 +154,6 @@ style.textContent = `
 
 document.head.appendChild(style);
 
-<<<<<<< HEAD
 
 // AJAX obsługa rejestracji (nowy formularz)
 const regForm = document.getElementById('registrationForm');
@@ -257,22 +256,3 @@ function togglePassword(passwordInputId, btn) {
     btn.textContent = '👁️';
   }
 }
-=======
-//wyświetl okno do logowania
-
-document.getElementById('loginIcon').addEventListener('click', function () {
-  const loginregister = document.getElementById('logreg');
-  loginregister.classList.toggle('visible');
-});
-
-document.getElementById('login').addEventListener('click', function () {
-  const loginForm = document.getElementById('log');
-  loginForm.classList.toggle('visible');
-});
-
-document.getElementById('register').addEventListener('click', function () {
-  const registerForm = document.getElementById('reg');
-  registerForm.classList.toggle('visible');
-});
-
->>>>>>> 5b57ec690160374c0b6f3e37eea7db78fae3cd5f
