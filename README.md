@@ -8,19 +8,19 @@ Projekt na zaliczenie przedmiotu "Projektowanie serwisów internetowych".
 ### Design:
 - [ ] Wybór kolorystyki
 - [ ] Aplikowanie ikon
-- [ ] Stylizacja buttonów
+- [x] Stylizacja buttonów
 - [ ] Stylizacja kart z restauracjami
-- [ ] Pinezka na mapie ma wyświetlać godziny otwarcia i adres restauracji
+- [x] Pinezka na mapie ma wyświetlać godziny otwarcia i adres restauracji
 ### Features:
 - [x] Dodano formularz do logowania bez backendu
-- [ ] about.html - opis firmy, przesłanie, misja, kontaktowe info (html-adress), formularz kontaktowy(html-form)
+- [x] about.html - opis firmy, przesłanie, misja, kontaktowe info (html-adress), formularz kontaktowy(html-form)
 - [ ] user.html - panel z zamówieniami, panel z rezerwacjami, historia zamówień i rezerwacji, ustawienia
-- [ ] index.html - logowanie
+- [x] index.php - logowanie
 - [ ] admin.html - panel zarządzania informacjami kontaktowymi, adresem,  wyświetlenie danych kontaktowych usera i informacji o rezerwacji
 - [ ] planner.html - panel zarządzania rezerwacjami, dodawanie godzin rezerwacji, dezaktywacja godzin rezerwacji, kalendarzowy look na rezerwacje
-- [ ] Baza danych
+- [x] Baza danych
 - [ ] Dodanie linków do glovo/pyszne danych restauracji
-- [ ] Sesje w PHP
+- [x] Sesje w PHP
 =======
 ---
 # Budowanie projektu
