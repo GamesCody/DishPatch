@@ -1,0 +1,17 @@
+Zmiany 25.05.2025 - Cody
+
+1.Skonfigurowano połączenie z bazą danych MariaDB na XAMPP, która jest forkiem MySQL.
+	-zmiana index.hmtl na index.php
+	-plik zawiera wstawkę łączącą z bazą danych w php na początku pliku
+	-testowanie połączenia z bazą danych poprzez test.php otwierany z:
+	`http://localhost/test_db.php`
+2.Dodano favicon.
+3.Dodano instrukcję budowania projektu w readme.md.
+4.Baza danych(szczegóły w Dishpatch_db.txt:
+	-utworzono tebelę `users`
+	-utworzono tebelę `orders`
+	-utworzono tebelę `reservations`
+5.Formularze logowania
+	-dodano podział na formularz rejestracji
+	i logowania z animacjami
+6.Dodano zmianę kursora na clicable jeśli jest nad ikoną logowania.

@@ -1,3 +1,4 @@
+
 # Dish Patch
 Projekt na zaliczenie przedmiotu "Projektowanie serwisów internetowych".
 - [ ] - zrobić backup bazy danych
@@ -43,3 +44,4 @@ Zwróć uwagę na to, że możliwe, że trzeba będzie dopasować ścieżkę.
 http://localhost/phpmyadmin/index.php
 ```
 W XAMPP user to root, hasła domyślnie nie potrzeba.
+

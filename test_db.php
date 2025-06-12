@@ -1,3 +1,4 @@
+
 <?php
 $host = "localhost";      // adres serwera MySQL, zwykle localhost
 $user = "root";           // nazwa użytkownika MySQL
@@ -16,3 +17,4 @@ echo "Połączenie z bazą danych powiodło się!";
 // Zamykamy połączenie
 $conn->close();
 ?>
+
