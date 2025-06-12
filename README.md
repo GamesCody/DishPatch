@@ -1,26 +1,11 @@
+
 # Dish Patch
 Projekt na zaliczenie przedmiotu "Projektowanie serwisów internetowych".
 - [ ] - zrobić backup bazy danych
 
 
 ## Do zrobienia:
-- [x] Zacząć - DONE
-### Design:
-- [ ] Wybór kolorystyki
-- [ ] Aplikowanie ikon
-- [ ] Stylizacja buttonów
-- [ ] Stylizacja kart z restauracjami
-- [ ] Pinezka na mapie ma wyświetlać godziny otwarcia i adres restauracji
-### Features:
-- [x] Dodano formularz do logowania bez backendu
-- [ ] about.html - opis firmy, przesłanie, misja, kontaktowe info (html-adress), formularz kontaktowy(html-form)
-- [ ] user.html - panel z zamówieniami, panel z rezerwacjami, historia zamówień i rezerwacji, ustawienia
-- [ ] index.html - logowanie
-- [ ] admin.html - panel zarządzania informacjami kontaktowymi, adresem,  wyświetlenie danych kontaktowych usera i informacji o rezerwacji
-- [ ] planner.html - panel zarządzania rezerwacjami, dodawanie godzin rezerwacji, dezaktywacja godzin rezerwacji, kalendarzowy look na rezerwacje
-- [ ] Baza danych
-- [ ] Dodanie linków do glovo/pyszne danych restauracji
-- [ ] Sesje w PHP
+`https://github.com/GamesCody/DishPatch/issues/1#issuecomment-2960546570`
 =======
 ---
 # Budowanie projektu
@@ -59,3 +44,4 @@ Zwróć uwagę na to, że możliwe, że trzeba będzie dopasować ścieżkę.
 http://localhost/phpmyadmin/index.php
 ```
 W XAMPP user to root, hasła domyślnie nie potrzeba.
+

@@ -1,3 +1,4 @@
+
 -- DishPatch: Schemat bazy danych
 -- Użytkownicy
 CREATE TABLE users (

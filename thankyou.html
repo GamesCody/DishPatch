@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dziękujemy – DishPatch</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #00c9a7, #92fe9d);
+      color: #003f3f;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      opacity: 0;
+      animation: fadeIn 1.5s ease-in-out forwards;
+    }
+
+    img {
+      width: 120px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      max-width: 600px;
+    }
+
+    .button {
+      margin-top: 30px;
+      padding: 12px 25px;
+      background-color: #00b894;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #01967a;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+  <script>
+    setTimeout(() => {
+      window.location.href = "subsites/about.html"; // lub index.html – zależnie od tego gdzie chcesz wracać
+    }, 5000);
+  </script>
+</head>
+<body>
+
+  <img src="assets/graphics/images/logo.png" alt="DishPatch logo" />
+  <h1>Dziękujemy za wiadomość!</h1>
+  <p>Twoja wiadomość została pomyślnie zapisana. Skontaktujemy się z Tobą tak szybko, jak to możliwe.</p>
+  <p>Za 5 sekund zostaniesz automatycznie przekierowany.</p>
+  <a href="subsites/about.html" class="button">Powrót ręczny</a>
+
+</body>
+</html>
