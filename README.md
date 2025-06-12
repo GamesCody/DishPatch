@@ -4,23 +4,7 @@ Projekt na zaliczenie przedmiotu "Projektowanie serwisów internetowych".
 
 
 ## Do zrobienia:
-- [x] Zacząć - DONE
-### Design:
-- [ ] Wybór kolorystyki
-- [ ] Aplikowanie ikon
-- [x] Stylizacja buttonów
-- [ ] Stylizacja kart z restauracjami
-- [x] Pinezka na mapie ma wyświetlać godziny otwarcia i adres restauracji
-### Features:
-- [x] Dodano formularz do logowania bez backendu
-- [x] about.html - opis firmy, przesłanie, misja, kontaktowe info (html-adress), formularz kontaktowy(html-form)
-- [ ] user.html - panel z zamówieniami, panel z rezerwacjami, historia zamówień i rezerwacji, ustawienia
-- [x] index.php - logowanie
-- [ ] admin.html - panel zarządzania informacjami kontaktowymi, adresem,  wyświetlenie danych kontaktowych usera i informacji o rezerwacji
-- [ ] planner.html - panel zarządzania rezerwacjami, dodawanie godzin rezerwacji, dezaktywacja godzin rezerwacji, kalendarzowy look na rezerwacje
-- [x] Baza danych
-- [ ] Dodanie linków do glovo/pyszne danych restauracji
-- [x] Sesje w PHP
+`https://github.com/GamesCody/DishPatch/issues/1#issuecomment-2960546570`
 =======
 ---
 # Budowanie projektu
