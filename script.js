@@ -209,7 +209,7 @@ if (logForm) {
         if (data.success) {
           logForm.reset();
           document.getElementById('loginForm').style.visibility = 'hidden';
-          window.location.href = 'subsites/user.html';
+          window.location.href = 'subsites/user.php';
         }
       })
       .catch(() => alert('Błąd połączenia z serwerem.'));

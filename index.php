@@ -208,7 +208,7 @@ include 'includes/connect.php';
       // Przykład: wyślij token do backendu AJAXem
       // fetch('/api/auth.php', { method: 'POST', body: ... })
       // alert('Zalogowano przez Google! (token przesłany do backendu)');
-      window.location.href = 'subsites/user.html';
+      window.location.href = 'subsites/user.php';
     }
   </script>
 
