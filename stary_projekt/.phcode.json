@@ -1,0 +1,8 @@
+
+{
+    "livePreviewUseDevServer": true,
+    "livePreviewServerProjectPath": "/",
+    "livePreviewHotReloadSupported": false,
+    "livePreviewFramework": "Custom",
+    "livePreviewServerURL": "http://localhost/DishPatch/"
+}
