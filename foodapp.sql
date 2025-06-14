@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Cze 14, 2025 at 10:12 PM
+-- Generation Time: Cze 14, 2025 at 11:14 PM
 -- Wersja serwera: 10.4.32-MariaDB
 -- Wersja PHP: 8.2.12
 
@@ -81,6 +81,20 @@ CREATE TABLE `orders` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `restaurant_id`, `order_time`, `details`, `status`, `created_at`) VALUES
+(2, 1, 1, '2025-06-14 12:00:00', '2x Pizza Margherita, 1x Cola', 'completed', '2025-06-14 10:05:00'),
+(3, 1, 2, '2025-06-14 13:00:00', '1x Burger, 1x Frytki', 'pending', '2025-06-14 20:56:30'),
+(4, 2, 1, '2025-06-13 18:30:00', '3x Sushi, 1x Zielona herbata', 'completed', '2025-06-13 16:31:00'),
+(5, 2, 2, '2025-06-12 14:45:00', '1x Zupa pomidorowa, 2x Woda', 'cancelled', '2025-06-12 12:50:00'),
+(6, 1, 1, '2025-06-14 12:00:00', '2x Pizza Margherita, 1x Cola', 'completed', '2025-06-14 10:05:00'),
+(7, 1, 2, '2025-06-14 13:00:00', '1x Burger, 1x Frytki', 'pending', '2025-06-14 20:57:48'),
+(8, 2, 1, '2025-06-13 18:30:00', '3x Sushi, 1x Zielona herbata', 'completed', '2025-06-13 16:31:00'),
+(9, 2, 2, '2025-06-12 14:45:00', '1x Zupa pomidorowa, 2x Woda', 'cancelled', '2025-06-12 12:50:00');
+
 -- --------------------------------------------------------
 
 --
@@ -94,6 +108,28 @@ CREATE TABLE `order_items` (
   `quantity` int(11) NOT NULL DEFAULT 1,
   `price` decimal(6,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order_items`
+--
+
+INSERT INTO `order_items` (`id`, `order_id`, `dish_name`, `quantity`, `price`) VALUES
+(9, 2, 'Pizza Margherita', 2, 29.90),
+(10, 2, 'Coca-Cola 0.5L', 1, 6.00),
+(11, 3, 'Burger Classic', 1, 24.50),
+(12, 3, 'Frytki', 1, 7.50),
+(13, 4, 'Sushi zestaw', 3, 39.00),
+(14, 4, 'Zielona herbata', 1, 9.50),
+(15, 5, 'Zupa pomidorowa', 1, 12.00),
+(16, 5, 'Woda mineralna', 2, 4.00),
+(17, 6, 'Pizza Margherita', 2, 29.90),
+(18, 6, 'Coca-Cola 0.5L', 1, 6.00),
+(19, 7, 'Burger Classic', 1, 24.50),
+(20, 7, 'Frytki', 1, 7.50),
+(21, 8, 'Sushi zestaw', 3, 39.00),
+(22, 8, 'Zielona herbata', 1, 9.50),
+(23, 9, 'Zupa pomidorowa', 1, 12.00),
+(24, 9, 'Woda mineralna', 2, 4.00);
 
 -- --------------------------------------------------------
 
@@ -156,11 +192,11 @@ CREATE TABLE `restaurant_seats` (
 
 INSERT INTO `restaurant_seats` (`id`, `restaurant_id`, `seat_number`, `is_occupied`, `reservation_date`, `time_slot`, `nazwisko`, `email`, `phone`) VALUES
 (1, 1, 1, 0, NULL, '12:00:00', NULL, NULL, NULL),
-(2, 1, 2, 0, NULL, '12:00:00', NULL, NULL, NULL),
+(2, 1, 2, 1, NULL, '12:00:00', '456465', 'dishpatch.sapport@gmail.com', '123456789'),
 (3, 1, 3, 0, NULL, '12:00:00', NULL, NULL, NULL),
 (4, 1, 4, 0, NULL, '12:00:00', NULL, NULL, NULL),
 (5, 1, 5, 0, NULL, '12:00:00', NULL, NULL, NULL),
-(6, 1, 6, 0, NULL, '12:00:00', NULL, NULL, NULL),
+(6, 1, 6, 1, NULL, '12:00:00', '456465', 'dishpatch.sapport@gmail.com', '123456789'),
 (7, 1, 7, 0, NULL, '12:00:00', NULL, NULL, NULL),
 (8, 1, 8, 0, NULL, '12:00:00', NULL, NULL, NULL),
 (9, 1, 1, 0, NULL, '13:00:00', NULL, NULL, NULL),
@@ -1147,7 +1183,8 @@ INSERT INTO `restaurant_seats` (`id`, `restaurant_id`, `seat_number`, `is_occupi
 (990, 12, 6, 0, NULL, '14:00:00', NULL, NULL, NULL),
 (991, 12, 7, 0, NULL, '14:00:00', NULL, NULL, NULL),
 (992, 12, 8, 0, NULL, '14:00:00', NULL, NULL, NULL),
-(993, 12, 1, 0, NULL, '15:00:00', NULL, NULL, NULL),
+(993, 12, 1, 0, NULL, '15:00:00', NULL, NULL, NULL);
+INSERT INTO `restaurant_seats` (`id`, `restaurant_id`, `seat_number`, `is_occupied`, `reservation_date`, `time_slot`, `nazwisko`, `email`, `phone`) VALUES
 (994, 12, 2, 0, NULL, '15:00:00', NULL, NULL, NULL),
 (995, 12, 3, 0, NULL, '15:00:00', NULL, NULL, NULL),
 (996, 12, 4, 0, NULL, '15:00:00', NULL, NULL, NULL),
@@ -1211,9 +1248,9 @@ INSERT INTO `restaurant_seats` (`id`, `restaurant_id`, `seat_number`, `is_occupi
 (1054, 12, 6, 0, NULL, '22:00:00', NULL, NULL, NULL),
 (1055, 12, 7, 0, NULL, '22:00:00', NULL, NULL, NULL),
 (1056, 12, 8, 0, NULL, '22:00:00', NULL, NULL, NULL),
-(1057, 13, 1, 0, NULL, '12:00:00', NULL, NULL, NULL),
+(1057, 13, 1, 1, NULL, '12:00:00', 'Ja', 'cody.urlik@gmail.com', '123456789'),
 (1058, 13, 2, 0, NULL, '12:00:00', NULL, NULL, NULL),
-(1059, 13, 3, 0, NULL, '12:00:00', NULL, NULL, NULL),
+(1059, 13, 3, 1, NULL, '12:00:00', 'Ja', 'cody.urlik@gmail.com', '123456789'),
 (1060, 13, 4, 0, NULL, '12:00:00', NULL, NULL, NULL),
 (1061, 13, 5, 0, NULL, '12:00:00', NULL, NULL, NULL),
 (1062, 13, 6, 0, NULL, '12:00:00', NULL, NULL, NULL),
@@ -1588,8 +1625,6 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `google_id`, `is_act
 (1, 'cody.urlik@gmail.com', 'cody.urlik@gmail.com', '$2y$10$frlYbbGCpLqnu06OeN1fWuIVMTB3CF6EHE4Qc1kdks8AVddaeBR1G', NULL, 0, NULL),
 (2, 'DishPatch', 'dishpatch.sapport@gmail.com', '$2y$10$aSyhdoPDwhlzjTABqTCtnOekWJZrngIVgwvkgbymeLYfDtfSanLX6', NULL, 1, NULL);
 
--- --------------------------------------------------------
-
 --
 -- Indeksy dla zrzutów tabel
 --
@@ -1652,13 +1687,13 @@ ALTER TABLE `locations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `restaurants`
