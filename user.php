@@ -9,6 +9,13 @@ $user_id = $_SESSION['user_id'];
 $stmt = $pdo->prepare('SELECT id, username, email FROM users WHERE id = ?');
 $stmt->execute([$user_id]);
 $u = $stmt->fetch();
+
+if (!isset($_SESSION['login_time'])) {
+    $_SESSION['login_time'] = time();
+}
+$session_duration = time() - $_SESSION['login_time'];
+$minutes = floor($session_duration / 60);
+$seconds = $session_duration % 60;
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -90,6 +97,7 @@ $u = $stmt->fetch();
         <a href="index.php" class="logo"><img src="images/logo.png" alt="logo"></a>
         <h2>Witaj w panelu użytkownika!</h2>
         <p>Tu możesz zamawiać jedzenie i rezerwować stoliki.</p>
+        <p style="color:#2d8f5a;font-weight:bold;">Czas trwania sesji: <?= $minutes ?> min <?= $seconds ?> sek</p>
   <table style="width:100%;border-collapse:collapse;margin:24px 0;">
     <tr style="background:#f0f0f0;">
       <th style="padding:12px;">ID</th>
