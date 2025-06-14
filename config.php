@@ -1,7 +1,7 @@
 <?php
 // config.php - połączenie z bazą danych
 $host = 'localhost';
-$db   = 'foodapp';
+$db   = 'dishpatch';
 $user = 'root';
 $pass = '';
 $charset = 'utf8mb4';

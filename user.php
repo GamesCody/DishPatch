@@ -6,7 +6,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'user') {
 }
 require_once 'config.php';
 $user_id = $_SESSION['user_id'];
-$stmt = $pdo->prepare('SELECT id, username, email FROM users WHERE id = ?');
+$stmt = $pdo->prepare('SELECT id, name, email FROM users WHERE id = ?');
 $stmt->execute([$user_id]);
 $u = $stmt->fetch();
 ?>
@@ -16,28 +16,108 @@ $u = $stmt->fetch();
     <meta charset="UTF-8">
     <title>DishPatch - Panel użytkownika</title>
     <link rel="icon" type="image/png" href="images/favicon.png">
-    <style>
-        body { font-family: Arial, sans-serif; background: #f8f8f8; }
-        .logo { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 24px; }
-        .logo img { height: 96px; cursor: pointer; }
-        .container { max-width: 600px; margin: 60px auto; background: #fff; padding: 32px; border-radius: 8px; box-shadow: 0 2px 12px #eee; }
-        h2 { color: #2d8f5a; text-align: center; }
-        .logout-btn { margin-top: 24px; background: #e74c3c; color: #fff; border: none; padding: 12px 24px; border-radius: 6px; font-size: 1rem; cursor: pointer; transition: background 0.2s; }
-        .logout-btn:hover { background: #c0392b; }
-    </style>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f8f8f8;
+        margin: 0;
+        padding: 0;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 24px;
+    }
+
+    .logo img {
+        height: 120px; /* powiększono z 96px */
+        cursor: pointer;
+    }
+
+    .container {
+        max-width: 640px;              /* delikatnie zwiększona szerokość */
+        margin: 40px auto;             /* mniejsze marginesy */
+        background: #ffffff;
+        padding: 40px 32px;            /* więcej przestrzeni wewnątrz */
+        border-radius: 12px;           /* delikatniejsze zaokrąglenie */
+        box-shadow: 0 4px 16px rgba(0,0,0,0.05); /* bardziej miękki cień */
+        text-align: center;            /* wyrównanie całej zawartości do środka */
+    }
+
+    h2 {
+        color: #2d8f5a;
+        margin-top: 0;
+        margin-bottom: 16px;
+        font-size: 1.8rem;
+    }
+
+    .logout-btn {
+        margin-top: 32px;
+        background: #e74c3c;
+        color: #fff;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 6px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s ease;
+    }
+
+    .logout-btn:hover {
+        background: #c0392b;
+    }
+
+    @media (max-width: 640px) {
+        .container {
+            margin: 20px;
+            padding: 24px;
+        }
+
+        .logo img {
+            height: 120px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+        }
+    }
+</style>
 </head>
 <body>
     <div class="container">
         <a href="index.php" class="logo"><img src="images/logo.png" alt="logo"></a>
         <h2>Witaj w panelu użytkownika!</h2>
         <p>Tu możesz zamawiać jedzenie i rezerwować stoliki.</p>
-        <table style="width:100%;border-collapse:collapse;margin:24px 0;">
-            <tr><th>ID</th><th>Nazwa</th><th>Email</th></tr>
-            <tr><td><?= htmlspecialchars($u['id']) ?></td><td><?= htmlspecialchars($u['username']) ?></td><td><?= htmlspecialchars($u['email']) ?></td></tr>
-        </table>
+  <table style="width:100%;border-collapse:collapse;margin:24px 0;">
+    <tr style="background:#f0f0f0;">
+      <th style="padding:12px;">ID</th>
+      <th style="padding:12px;">Nazwa</th>
+      <th style="padding:12px;">Email</th>
+    </tr>
+    <tr>
+      <td style="padding:12px;text-align:center;"><?= htmlspecialchars($u['id']) ?></td>
+      <td style="padding:12px;text-align:center;"><?= htmlspecialchars($u['name']) ?></td>
+      <td style="padding:12px;text-align:center;"><?= htmlspecialchars($u['email']) ?></td>
+    </tr>
+  </table>
         <nav style="max-width:600px;margin:30px auto 0 auto;text-align:center;">
             <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;">
-                <li><a href="#" style="display:inline-block;padding:12px 24px;background:#2d8f5a;color:#fff;border-radius:6px;text-decoration:none;font-weight:bold;">Zamów/zarezerwuj ponownie</a></li>
+                <li>
+                  <a href="repeat_last.php?type=order"
+                    style="display:inline-block;padding:12px 24px;background:#2d8f5a;
+                    color:#fff;border-radius:6px;text-decoration:none;font-weight:bold;">
+                    Zamów ponownie
+                  </a>
+                </li>
+                <li>
+                  <a href="repeat_last.php?type=reservation"
+                    style="display:inline-block;padding:12px 24px;background:#278e97;
+                    color:#fff;border-radius:6px;text-decoration:none;font-weight:bold;">
+                    Zarezerwuj ponownie
+                  </a>
+                </li>
                 <li><a href="#" style="display:inline-block;padding:12px 24px;background:#278e97;color:#fff;border-radius:6px;text-decoration:none;font-weight:bold;">Moje zamówienia</a></li>
                 <li><a href="#" style="display:inline-block;padding:12px 24px;background:#00b894;color:#fff;border-radius:6px;text-decoration:none;font-weight:bold;">Moje rezerwacje</a></li>
                 <li><a href="settings.php" style="display:inline-block;padding:12px 24px;background:#ff9800;color:#fff;border-radius:6px;text-decoration:none;font-weight:bold;">Ustawienia konta</a></li>
