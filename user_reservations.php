@@ -8,15 +8,24 @@ if (!$user_id) {
     exit();
 }
 
-// Pobierz rezerwacje użytkownika
+// Pobierz rezerwacje użytkownika z restaurant_seats po emailu
+$user_email = isset($_SESSION['email']) ? $_SESSION['email'] : null;
+if (!$user_email) {
+    // Pobierz email z bazy na podstawie user_id
+    $stmt = $pdo->prepare('SELECT email FROM users WHERE id = ?');
+    $stmt->execute([$_SESSION['user_id']]);
+    $row = $stmt->fetch();
+    $user_email = $row ? $row['email'] : null;
+    $_SESSION['email'] = $user_email;
+}
 $stmt = $pdo->prepare("
-    SELECT r.*, res.name AS restaurant_name
-    FROM reservations r
-    JOIN restaurants res ON r.restaurant_id = res.id
-    WHERE r.user_id = ?
-    ORDER BY r.reservation_time DESC
+    SELECT s.*, l.restaurant_name
+    FROM restaurant_seats s
+    JOIN locations l ON s.restaurant_id = l.restaurant_id
+    WHERE s.email = ?
+    ORDER BY s.reservation_date DESC, s.time_slot DESC
 ");
-$stmt->execute([$user_id]);
+$stmt->execute([$user_email]);
 $reservations = $stmt->fetchAll();
 ?>
 
@@ -81,7 +90,7 @@ $reservations = $stmt->fetchAll();
             <?php foreach ($reservations as $r): ?>
                 <tr>
                     <td><?= $r['id'] ?></td>
-                    <td><?= date('d.m.Y H:i', strtotime($r['date_time'])) ?></td>
+                    <td><?= date('d.m.Y H:i', strtotime($r['reservation_date'] . ' ' . $r['time_slot'])) ?></td>
                     <td><?= $r['guests'] ?></td>
                     <td><?= htmlspecialchars($r['restaurant_name']) ?></td>
                 </tr>

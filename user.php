@@ -13,9 +13,7 @@ $u = $stmt->fetch();
 if (!isset($_SESSION['login_time'])) {
     $_SESSION['login_time'] = time();
 }
-$session_duration = time() - $_SESSION['login_time'];
-$minutes = floor($session_duration / 60);
-$seconds = $session_duration % 60;
+$login_time = $_SESSION['login_time'];
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -97,8 +95,7 @@ $seconds = $session_duration % 60;
         <a href="index.php" class="logo"><img src="images/logo.png" alt="logo"></a>
         <h2>Witaj w panelu użytkownika!</h2>
         <p>Tu możesz zamawiać jedzenie i rezerwować stoliki.</p>
-        <p style="color:#2d8f5a;font-weight:bold;">Czas trwania sesji: <?= $minutes ?> min <?= $seconds ?> sek</p>
-  <table style="width:100%;border-collapse:collapse;margin:24px 0;">
+        <table style="width:100%;border-collapse:collapse;margin:24px 0;">
     <tr style="background:#f0f0f0;">
       <th style="padding:12px;">ID</th>
       <th style="padding:12px;">Nazwa</th>
@@ -232,7 +229,7 @@ $seconds = $session_duration % 60;
     }
     </script>
     <!-- ZEGAR SESJI -->
-    <div id="session-timer" style="position:fixed;top:18px;right:24px;background:#fff3cd;color:#856404;padding:10px 18px;border-radius:8px;box-shadow:0 2px 8px #eee;font-weight:bold;z-index:999;font-size:1.1em;">Pozostały czas sesji: <span id="timer-value">--:--</span></div>
+    <div id="session-timer" style="position:fixed;top:18px;right:32px;background:#2d8f5a;color:#fff;padding:8px 18px;border-radius:8px;font-size:1.1em;z-index:999;box-shadow:0 2px 8px #aaa;letter-spacing:1px;">Czas sesji: <span id="timer">00:00</span></div>
     <div id="extend-session-popup" style="display:none;position:fixed;top:80px;right:24px;z-index:10000;background:#fffbe6;border:2px solid #ff9800;padding:22px 32px;border-radius:12px;box-shadow:0 2px 12px #ff9800b0;font-size:1.1em;color:#856404;text-align:center;">
       <span>Twoja sesja wygaśnie za mniej niż 5 minut.<br>Przedłużyć sesję?</span><br>
       <button id="extend-session-btn" style="margin-top:16px;padding:10px 24px;background:#00b894;color:#fff;border:none;border-radius:6px;font-weight:bold;cursor:pointer;">Przedłuż sesję</button>
@@ -281,6 +278,19 @@ $seconds = $session_duration % 60;
           });
       };
     })();
+    </script>
+    <script>
+      const loginTime = <?= json_encode($login_time) ?>;
+      function pad(n) { return n < 10 ? '0' + n : n; }
+      function updateTimer() {
+        const now = Math.floor(Date.now() / 1000);
+        let diff = now - loginTime;
+        const min = Math.floor(diff / 60);
+        const sec = diff % 60;
+        document.getElementById('timer').textContent = pad(min) + ':' + pad(sec);
+      }
+      updateTimer();
+      setInterval(updateTimer, 1000);
     </script>
 </body>
 </html>

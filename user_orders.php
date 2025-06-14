@@ -11,9 +11,9 @@ if (!$user_id) {
 
 // Pobierz zamówienia użytkownika
 $stmt = $pdo->prepare("
-    SELECT o.*, r.name AS restaurant_name 
+    SELECT o.*, l.restaurant_name 
     FROM orders o 
-    JOIN restaurants r ON o.restaurant_id = r.id 
+    JOIN locations l ON o.restaurant_id = l.restaurant_id 
     WHERE o.user_id = ? 
     ORDER BY o.created_at DESC
 ");
