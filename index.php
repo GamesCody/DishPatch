@@ -48,7 +48,7 @@
         <input id="meal-search" type="text" placeholder="Wyszukaj posiłek..." style="width:100%;max-width:400px;padding:12px 18px;font-size:1.1em;border-radius:8px;border:1px solid #ccc;box-shadow:0 2px 8px #eee;outline:none;">
         <button id="meal-search-btn" style="padding:12px 24px;font-size:1.1em;border-radius:8px;background:#2d8f5a;color:#fff;border:none;cursor:pointer;">Szukaj</button>
     </div>
-    <!-- Możesz dodać tu dalszą część landing page -->
+    
     <div style="max-width:900px;margin:30px auto 0;">
         <label for="city-select" style="font-size:1.1em;font-weight:bold;">Wybierz miasto:</label>
         <select id="city-select" style="margin-left:12px;padding:8px 16px;border-radius:6px;">
@@ -134,7 +134,6 @@
     }
     function isLoggedIn() {
       // Prosta detekcja: jeśli na stronie głównej nie ma sesji, nie ma usera
-      // Możesz to rozbudować np. o sprawdzanie ciasteczka lub tokena
       return false;
     }
     function showCards(restaurants) {

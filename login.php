@@ -1,5 +1,4 @@
 <?php
-// obsługa logowania z reCAPTCHA (bez Google OAuth)
 session_start();
 require_once 'config.php';
 

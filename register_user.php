@@ -43,4 +43,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-<!-- ...istniejący kod HTML (formularz)... -->
+
