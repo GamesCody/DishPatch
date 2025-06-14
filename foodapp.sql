@@ -1149,8 +1149,7 @@ INSERT INTO `restaurant_seats` (`id`, `restaurant_id`, `seat_number`, `is_occupi
 (992, 12, 8, 0, NULL, '14:00:00', NULL, NULL, NULL),
 (993, 12, 1, 0, NULL, '15:00:00', NULL, NULL, NULL),
 (994, 12, 2, 0, NULL, '15:00:00', NULL, NULL, NULL),
-(995, 12, 3, 0, NULL, '15:00:00', NULL, NULL, NULL);
-INSERT INTO `restaurant_seats` (`id`, `restaurant_id`, `seat_number`, `is_occupied`, `reservation_date`, `time_slot`, `nazwisko`, `email`, `phone`) VALUES
+(995, 12, 3, 0, NULL, '15:00:00', NULL, NULL, NULL),
 (996, 12, 4, 0, NULL, '15:00:00', NULL, NULL, NULL),
 (997, 12, 5, 0, NULL, '15:00:00', NULL, NULL, NULL),
 (998, 12, 6, 0, NULL, '15:00:00', NULL, NULL, NULL),
@@ -1588,6 +1587,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `google_id`, `is_active`, `activation_token`) VALUES
 (1, 'cody.urlik@gmail.com', 'cody.urlik@gmail.com', '$2y$10$frlYbbGCpLqnu06OeN1fWuIVMTB3CF6EHE4Qc1kdks8AVddaeBR1G', NULL, 0, NULL),
 (4, 'DishPatch', 'dishpatch.sapport@gmail.com', '$2y$10$aSyhdoPDwhlzjTABqTCtnOekWJZrngIVgwvkgbymeLYfDtfSanLX6', NULL, 1, NULL);
+
+-- --------------------------------------------------------
 
 --
 -- Indeksy dla zrzutów tabel
