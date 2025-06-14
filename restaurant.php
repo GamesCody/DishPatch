@@ -520,8 +520,8 @@ $_SESSION['last_activity'] = time();
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="userPhone">Telefon (opcjonalnie)</label>
-                            <input type="tel" id="userPhone" placeholder="+48 123 456 789">
+                            <label for="userPhone">Telefon (opcjonalnie - 9 cyfr)</label>
+                            <input type="tel" id="userPhone" placeholder="123456789" maxlength="9" pattern="[0-9]{9}" title="Wprowadź dokładnie 9 cyfr">
                         </div>
                     </div>
                 </div>
@@ -590,6 +590,27 @@ $_SESSION['last_activity'] = time();
         let selectedSeats = [];
         let currentTimeSlot = timeSlots[0];
 
+        // Walidacja pola telefonu - tylko cyfry, maksymalnie 9
+        userPhoneInput.addEventListener('input', function(e) {
+            // Usuń wszystkie znaki oprócz cyfr
+            let value = e.target.value.replace(/[^0-9]/g, '');
+            
+            // Ogranicz do 9 cyfr
+            if (value.length > 9) {
+                value = value.substring(0, 9);
+            }
+            
+            e.target.value = value;
+        });
+
+        // Blokuj wklejanie nieprawidłowych znaków
+        userPhoneInput.addEventListener('paste', function(e) {
+            e.preventDefault();
+            let paste = (e.clipboardData || window.clipboardData).getData('text');
+            let cleanPaste = paste.replace(/[^0-9]/g, '').substring(0, 9);
+            e.target.value = cleanPaste;
+        });
+
         function showError(message) {
             errorMessage.textContent = message;
             errorMessage.style.display = 'block';
@@ -624,6 +645,7 @@ $_SESSION['last_activity'] = time();
         function validateForm() {
             const lastname = userLastnameInput.value.trim();
             const email = userEmailInput.value.trim();
+            const phone = userPhoneInput.value.trim();
             
             if (!lastname) {
                 showError('Proszę wprowadzić nazwisko.');
@@ -638,6 +660,17 @@ $_SESSION['last_activity'] = time();
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
                 showError('Proszę wprowadzić prawidłowy adres email.');
+                return false;
+            }
+            
+            // Walidacja telefonu - jeśli podany, musi mieć dokładnie 9 cyfr
+            if (phone && phone.length !== 9) {
+                showError('Telefon musi składać się z dokładnie 9 cyfr.');
+                return false;
+            }
+            
+            if (phone && !/^[0-9]{9}$/.test(phone)) {
+                showError('Telefon może zawierać tylko cyfry.');
                 return false;
             }
             
