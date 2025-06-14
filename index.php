@@ -43,6 +43,10 @@
             </form>
         </nav>
     </header>
+    <!-- Pole wyszukiwania posiłków -->
+    <div style="max-width:900px;margin:24px auto 0 auto;display:flex;justify-content:center;">
+        <input id="meal-search" type="text" placeholder="Wyszukaj posiłek..." style="width:100%;max-width:400px;padding:12px 18px;font-size:1.1em;border-radius:8px;border:1px solid #ccc;box-shadow:0 2px 8px #eee;outline:none;">
+    </div>
     <!-- Możesz dodać tu dalszą część landing page -->
     <div style="max-width:900px;margin:30px auto 0;">
         <label for="city-select" style="font-size:1.1em;font-weight:bold;">Wybierz miasto:</label>

@@ -1586,7 +1586,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `google_id`, `is_active`, `activation_token`) VALUES
 (1, 'cody.urlik@gmail.com', 'cody.urlik@gmail.com', '$2y$10$frlYbbGCpLqnu06OeN1fWuIVMTB3CF6EHE4Qc1kdks8AVddaeBR1G', NULL, 0, NULL),
-(4, 'DishPatch', 'dishpatch.sapport@gmail.com', '$2y$10$aSyhdoPDwhlzjTABqTCtnOekWJZrngIVgwvkgbymeLYfDtfSanLX6', NULL, 1, NULL);
+(2, 'DishPatch', 'dishpatch.sapport@gmail.com', '$2y$10$aSyhdoPDwhlzjTABqTCtnOekWJZrngIVgwvkgbymeLYfDtfSanLX6', NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
