@@ -106,8 +106,8 @@ $u = $stmt->fetch();
             `<a href="${r.order_url}" target="_blank"><button style='margin:6px 0 0 0;padding:8px 16px;background:#2d8f5a;color:#fff;border:none;border-radius:5px;cursor:pointer;'>Zamów</button></a>` :
             `<button style='margin:6px 0 0 0;padding:8px 16px;background:#aaa;color:#fff;border:none;border-radius:5px;cursor:not-allowed;opacity:0.7;' disabled title='skontaktuj się  z restaturacją telefonicznie'>Zamów</button>`
           ) +
-          `<button onclick=\"alert('Rezerwacja stolika w przygotowaniu!')\" style='margin:6px 0 0 8px;padding:8px 16px;background:#226b41;color:#fff;border:none;border-radius:5px;cursor:pointer;'>Zarezerwuj stolik</button>` +
-          `<button onclick=\"mapUser.setView([${r.lat}, ${r.lng}], 16);\" style='margin:6px 0 0 8px;padding:8px 16px;background:#ff9800;color:#fff;border:none;border-radius:5px;cursor:pointer;'>Pokaż na mapie</button>`;
+          `<button onclick="handleReserveClickUser()" style='margin:6px 0 0 8px;padding:8px 16px;background:#226b41;color:#fff;border:none;border-radius:5px;cursor:pointer;'>Zarezerwuj stolik</button>` +
+          `<button onclick="mapUser.setView([${r.lat}, ${r.lng}], 16);" style='margin:6px 0 0 8px;padding:8px 16px;background:#ff9800;color:#fff;border:none;border-radius:5px;cursor:pointer;'>Pokaż na mapie</button>`;
         let marker = L.marker([r.lat, r.lng]).addTo(mapUser).bindPopup(popupHtml);
         markersUser.push(marker);
       });
@@ -127,10 +127,27 @@ $u = $stmt->fetch();
             `<a href="${r.order_url}" target="_blank"><button style='margin:6px 0 0 0;padding:8px 16px;background:#2d8f5a;color:#fff;border:none;border-radius:5px;cursor:pointer;'>Zamów</button></a>` :
             `<button style='margin:6px 0 0 0;padding:8px 16px;background:#aaa;color:#fff;border:none;border-radius:5px;cursor:not-allowed;opacity:0.7;' disabled title='skontaktuj się  z restaturacją telefonicznie'>Zamów</button>`
           ) +
-          `<button onclick=\"alert('Rezerwacja stolika w przygotowaniu!')\" style='margin:6px 0 0 8px;padding:8px 16px;background:#226b41;color:#fff;border:none;border-radius:5px;cursor:pointer;'>Zarezerwuj stolik</button>` +
-          `<button onclick=\"mapUser.setView([${r.lat}, ${r.lng}], 16);\" style='margin:6px 0 0 8px;padding:8px 16px;background:#ff9800;color:#fff;border:none;border-radius:5px;cursor:pointer;'>Pokaż na mapie</button>` +
+          `<button onclick="handleReserveClickUser()" style='margin:6px 0 0 8px;padding:8px 16px;background:#226b41;color:#fff;border:none;border-radius:5px;cursor:pointer;'>Zarezerwuj stolik</button>` +
+          `<button onclick="mapUser.setView([${r.lat}, ${r.lng}], 16);" style='margin:6px 0 0 8px;padding:8px 16px;background:#ff9800;color:#fff;border:none;border-radius:5px;cursor:pointer;'>Pokaż na mapie</button>` +
         '</div>'
       ).join('');
+    }
+    // Dodaj funkcję przekierowującą:
+    function handleReserveClickUser() {
+      // Pobierz aktualnie wybraną restaurację z selecta
+      const selectedCity = document.getElementById('city-select-user').value;
+      if (!selectedCity) {
+        alert('Najpierw wybierz miasto z listy!');
+        return;
+      }
+      
+      // Znajdź pierwszą restaurację z wybranego miasta
+      const restaurant = allRestaurantsUser.find(r => r.city === selectedCity);
+      if (restaurant) {
+        window.location.href = `rezerwacja.html?restaurant_id=${restaurant.id}`;
+      } else {
+        window.location.href = 'rezerwacja.html';
+      }
     }
     </script>
     <!-- ZEGAR SESJI -->
