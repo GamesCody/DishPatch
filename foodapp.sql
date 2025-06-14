@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Cze 15, 2025 at 12:00 AM
+-- Generation Time: Cze 15, 2025 at 12:14 AM
 -- Wersja serwera: 10.4.32-MariaDB
 -- Wersja PHP: 8.2.12
 
@@ -20,6 +20,33 @@ SET time_zone = "+00:00";
 --
 -- Database: `foodapp`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `dishes`
+--
+
+CREATE TABLE `dishes` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `dishes`
+--
+
+INSERT INTO `dishes` (`id`, `name`) VALUES
+(2, 'Burger'),
+(6, 'Kebab'),
+(4, 'Pad Thai'),
+(5, 'Pierogi'),
+(1, 'Pizza Margherita'),
+(7, 'Sałatka Cezar'),
+(10, 'Schabowy'),
+(3, 'Sushi'),
+(9, 'Tatar'),
+(8, 'Zupa pomidorowa');
 
 -- --------------------------------------------------------
 
@@ -167,6 +194,53 @@ INSERT INTO `restaurants` (`id`, `email`, `password`, `google_id`) VALUES
 (16, 'arczi@foodapp.pl', '$2y$10$iFugm8CYpb9zUKRxtllZTe0v1.GauQy5Pe71FRbtHBq9qaAdTEA/C', NULL),
 (17, 'thanglong@foodapp.pl', '$2y$10$iFugm8CYpb9zUKRxtllZTe0v1.GauQy5Pe71FRbtHBq9qaAdTEA/C', NULL),
 (18, 'mcdonalds@foodapp.pl', '$2y$10$iFugm8CYpb9zUKRxtllZTe0v1.GauQy5Pe71FRbtHBq9qaAdTEA/C', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `restaurant_dishes`
+--
+
+CREATE TABLE `restaurant_dishes` (
+  `restaurant_id` int(11) NOT NULL,
+  `dish_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `restaurant_dishes`
+--
+
+INSERT INTO `restaurant_dishes` (`restaurant_id`, `dish_id`) VALUES
+(1, 1),
+(1, 2),
+(1, 5),
+(2, 2),
+(2, 6),
+(2, 7),
+(3, 3),
+(3, 4),
+(3, 8),
+(4, 1),
+(4, 9),
+(4, 10),
+(5, 2),
+(5, 3),
+(5, 5),
+(6, 4),
+(6, 6),
+(6, 7),
+(7, 1),
+(7, 8),
+(7, 10),
+(8, 2),
+(8, 3),
+(8, 9),
+(9, 4),
+(9, 5),
+(9, 6),
+(10, 7),
+(10, 8),
+(10, 9);
 
 -- --------------------------------------------------------
 
@@ -1630,6 +1704,13 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `google_id`, `is_act
 --
 
 --
+-- Indeksy dla tabeli `dishes`
+--
+ALTER TABLE `dishes`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
 -- Indeksy dla tabeli `locations`
 --
 ALTER TABLE `locations`
@@ -1659,6 +1740,13 @@ ALTER TABLE `restaurants`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Indeksy dla tabeli `restaurant_dishes`
+--
+ALTER TABLE `restaurant_dishes`
+  ADD PRIMARY KEY (`restaurant_id`,`dish_id`),
+  ADD KEY `dish_id` (`dish_id`);
+
+--
 -- Indeksy dla tabeli `restaurant_seats`
 --
 ALTER TABLE `restaurant_seats`
@@ -1676,6 +1764,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `dishes`
+--
+ALTER TABLE `dishes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `locations`
@@ -1735,6 +1829,13 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `order_items`
   ADD CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `restaurant_dishes`
+--
+ALTER TABLE `restaurant_dishes`
+  ADD CONSTRAINT `restaurant_dishes_ibfk_1` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurants` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `restaurant_dishes_ibfk_2` FOREIGN KEY (`dish_id`) REFERENCES `dishes` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
