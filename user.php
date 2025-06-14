@@ -6,7 +6,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'user') {
 }
 require_once 'config.php';
 $user_id = $_SESSION['user_id'];
-$stmt = $pdo->prepare('SELECT id, name, email FROM users WHERE id = ?');
+$stmt = $pdo->prepare('SELECT id, username, email FROM users WHERE id = ?');
 $stmt->execute([$user_id]);
 $u = $stmt->fetch();
 ?>
@@ -98,7 +98,7 @@ $u = $stmt->fetch();
     </tr>
     <tr>
       <td style="padding:12px;text-align:center;"><?= htmlspecialchars($u['id']) ?></td>
-      <td style="padding:12px;text-align:center;"><?= htmlspecialchars($u['name']) ?></td>
+      <td style="padding:12px;text-align:center;"><?= htmlspecialchars($u['username']) ?></td>
       <td style="padding:12px;text-align:center;"><?= htmlspecialchars($u['email']) ?></td>
     </tr>
   </table>
@@ -264,7 +264,7 @@ $u = $stmt->fetch();
       document.getElementById('extend-session-btn').onclick = function() {
         fetch('extend_session.php', {method:'POST', credentials:'same-origin'})
           .then(r => r.json())
-          .then(data => {
+          .then data => {
             if(data.success) {
               sessionStart = data.session_start;
               extendPopupShown = false;
