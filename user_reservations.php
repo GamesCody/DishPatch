@@ -88,7 +88,7 @@ $reservations = $stmt->fetchAll();
             </tr>
             <?php foreach ($reservations as $r): ?>
                 <tr>
-                    <td><?= $r['id'] ?></td>
+                    <td><?= $r['seat_number'] ?></td>
                     <td><?= date('d.m.Y H:i', strtotime($r['reservation_date'] . ' ' . $r['time_slot'])) ?></td>
                     <td><?= htmlspecialchars($r['restaurant_name']) ?></td>
                 </tr>

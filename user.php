@@ -6,7 +6,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'user') {
 }
 require_once 'config.php';
 $user_id = $_SESSION['user_id'];
-$stmt = $pdo->prepare('SELECT id, username, email FROM users WHERE id = ?');
+$stmt = $pdo->prepare('SELECT username, email FROM users WHERE id = ?');
 $stmt->execute([$user_id]);
 $u = $stmt->fetch();
 
@@ -97,14 +97,16 @@ $login_time = $_SESSION['login_time'];
         <p>Tu możesz zamawiać jedzenie i rezerwować stoliki.</p>
         <table style="width:100%;border-collapse:collapse;margin:24px 0;">
     <tr style="background:#f0f0f0;">
-      <th style="padding:12px;">ID</th>
-      <th style="padding:12px;">Nazwa</th>
+      <th style="padding:12px;">Imię</th>
       <th style="padding:12px;">Email</th>
     </tr>
     <tr>
-      <td style="padding:12px;text-align:center;"><?= htmlspecialchars($u['id']) ?></td>
-      <td style="padding:12px;text-align:center;"><?= htmlspecialchars($u['username']) ?></td>
-      <td style="padding:12px;text-align:center;"><?= htmlspecialchars($u['email']) ?></td>
+      <td style="padding:12px;text-align:center;">
+        <?php if ($u && !empty($u['username'])) echo htmlspecialchars($u['username']); else echo '<span style="color:#aaa;">Brak danych</span>'; ?>
+      </td>
+      <td style="padding:12px;text-align:center;">
+        <?php if ($u && !empty($u['email'])) echo htmlspecialchars($u['email']); else echo '<span style="color:#aaa;">Brak danych</span>'; ?>
+      </td>
     </tr>
   </table>
         <nav style="max-width:600px;margin:30px auto 0 auto;text-align:center;">
@@ -124,6 +126,11 @@ $login_time = $_SESSION['login_time'];
         <form action="logout.php" method="post">
             <button type="submit" class="logout-btn">Wyloguj się</button>
         </form>
+    </div>
+    <!-- Pole wyszukiwania posiłków z przyciskiem szukaj dla usera nad mapą -->
+    <div style="max-width:900px;margin:24px auto 0 auto;display:flex;justify-content:center;gap:12px;">
+        <input id="meal-search-user" type="text" placeholder="Wyszukaj posiłek..." style="width:100%;max-width:400px;padding:12px 18px;font-size:1.1em;border-radius:8px;border:1px solid #ccc;box-shadow:0 2px 8px #eee;outline:none;">
+        <button id="meal-search-btn-user" style="padding:12px 24px;font-size:1.1em;border-radius:8px;background:#2d8f5a;color:#fff;border:none;cursor:pointer;">Szukaj</button>
     </div>
     <!-- KOPIA LANDING PAGE: MAPA I WYBÓR RESTAURACJI -->
     <div style="max-width:900px;margin:30px auto 0;">
@@ -229,7 +236,7 @@ $login_time = $_SESSION['login_time'];
     }
     </script>
     <!-- ZEGAR SESJI -->
-    <div id="session-timer" style="position:fixed;top:18px;right:32px;background:#2d8f5a;color:#fff;padding:8px 18px;border-radius:8px;font-size:1.1em;z-index:999;box-shadow:0 2px 8px #aaa;letter-spacing:1px;">Czas sesji: <span id="timer">00:00</span></div>
+    <div id="session-timer" style="position:fixed;top:18px;right:32px;background:#2d8f5a;color:#fff;padding:8px 18px;border-radius:8px;font-size:1.1em;z-index:999;box-shadow:0 2px 8px #aaa;letter-spacing:1px;">Czas sesji: <span id="timer-value">00:00</span></div>
     <div id="extend-session-popup" style="display:none;position:fixed;top:80px;right:24px;z-index:10000;background:#fffbe6;border:2px solid #ff9800;padding:22px 32px;border-radius:12px;box-shadow:0 2px 12px #ff9800b0;font-size:1.1em;color:#856404;text-align:center;">
       <span>Twoja sesja wygaśnie za mniej niż 5 minut.<br>Przedłużyć sesję?</span><br>
       <button id="extend-session-btn" style="margin-top:16px;padding:10px 24px;background:#00b894;color:#fff;border:none;border-radius:6px;font-weight:bold;cursor:pointer;">Przedłuż sesję</button>
@@ -237,7 +244,7 @@ $login_time = $_SESSION['login_time'];
     <script>
     // ZEGAR SESJI
     (function() {
-      let sessionStart = <?php echo isset($_SESSION['session_start']) ? $_SESSION['session_start'] : 'null'; ?>;
+      let sessionStart = <?php echo isset($_SESSION['session_start']) ? $_SESSION['session_start'] : (isset($_SESSION['login_time']) ? $_SESSION['login_time'] : 'null'); ?>;
       let maxSession = 900; // sekund
       let extendPopupShown = false;
       function updateTimer() {
@@ -269,9 +276,9 @@ $login_time = $_SESSION['login_time'];
       document.getElementById('extend-session-btn').onclick = function() {
         fetch('extend_session.php', {method:'POST', credentials:'same-origin'})
           .then(r => r.json())
-          .then data => {
+          .then(data => {
             if(data.success) {
-              sessionStart = data.session_start;
+              sessionStart = Math.floor(Date.now() / 1000);
               extendPopupShown = false;
               document.getElementById('extend-session-popup').style.display = 'none';
             }
@@ -291,6 +298,24 @@ $login_time = $_SESSION['login_time'];
       }
       updateTimer();
       setInterval(updateTimer, 1000);
+    </script>
+    <script>
+    // Dodaj obsługę wyszukiwania posiłku dla usera
+    function filterByMealUser() {
+      const meal = document.getElementById('meal-search-user').value.trim().toLowerCase();
+      const city = document.getElementById('city-select-user').value;
+      let filtered = allRestaurantsUser;
+      if (city) filtered = filtered.filter(r => r.city === city);
+      if (meal) {
+        filtered = filtered.filter(r => (r.dishes||[]).some(d => d.toLowerCase().includes(meal)));
+      }
+      showCardsUser(filtered);
+      document.getElementById('map-user').style.display = '';
+    }
+    document.getElementById('meal-search-btn-user').addEventListener('click', filterByMealUser);
+    document.getElementById('meal-search-user').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') filterByMealUser();
+    });
     </script>
 </body>
 </html>

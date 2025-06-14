@@ -43,9 +43,10 @@
             </form>
         </nav>
     </header>
-    <!-- Pole wyszukiwania posiłków -->
-    <div style="max-width:900px;margin:24px auto 0 auto;display:flex;justify-content:center;">
+    <!-- Pole wyszukiwania posiłków z przyciskiem szukaj -->
+    <div style="max-width:900px;margin:24px auto 0 auto;display:flex;justify-content:center;gap:12px;">
         <input id="meal-search" type="text" placeholder="Wyszukaj posiłek..." style="width:100%;max-width:400px;padding:12px 18px;font-size:1.1em;border-radius:8px;border:1px solid #ccc;box-shadow:0 2px 8px #eee;outline:none;">
+        <button id="meal-search-btn" style="padding:12px 24px;font-size:1.1em;border-radius:8px;background:#2d8f5a;color:#fff;border:none;cursor:pointer;">Szukaj</button>
     </div>
     <!-- Możesz dodać tu dalszą część landing page -->
     <div style="max-width:900px;margin:30px auto 0;">
@@ -162,6 +163,24 @@
     function handleReserveClick() {
       alert('Aby zarezerwować stolik, musisz się zalogować lub zarejestrować!');
     }
+    // Dodaj obsługę wyszukiwania posiłku
+    function filterByMeal() {
+      const meal = document.getElementById('meal-search').value.trim().toLowerCase();
+      const city = document.getElementById('city-select').value;
+      let filtered = allRestaurants;
+      if (city) filtered = filtered.filter(r => r.city === city);
+      if (meal) {
+        filtered = filtered.filter(r => (r.dishes||[]).some(d => d.toLowerCase().includes(meal)));
+      }
+      // Pokazuj tylko karty restauracji, mapa zawsze pokazuje wszystkie restauracje
+      showCards(filtered);
+      // Mapa zawsze widoczna
+      document.getElementById('map').style.display = '';
+    }
+    document.getElementById('meal-search-btn').addEventListener('click', filterByMeal);
+    document.getElementById('meal-search').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') filterByMeal();
+    });
     </script>
     <footer style="text-align:center;margin:40px 0 0 0;color:#888;font-size:1rem;">&copy; DishPatch 2025</footer>
 </body>
