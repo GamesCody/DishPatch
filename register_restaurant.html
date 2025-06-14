@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>DishPatch - Rejestracja restauracji</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <style>
+        body { font-family: Arial, sans-serif; background: #f8f8f8; }
+        .logo { display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
+        .logo img { height: 96px; cursor: pointer; }
+        .container { max-width: 400px; margin: 60px auto; background: #fff; padding: 32px; border-radius: 8px; box-shadow: 0 2px 12px #eee; }
+        h2 { color: #2d8f5a; text-align: center; }
+        input, button { width: 100%; padding: 12px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; }
+        button { background: #2d8f5a; color: #fff; border: none; cursor: pointer; }
+        button:hover { background: #226b41; }
+        footer { text-align: center; margin-top: 40px; color: #888; font-size: 1rem; }
+    </style>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+    <div class="container">
+        <a href="index.php" class="logo"><img src="images/logo.png" alt="logo"></a>
+        <h2>Rejestracja restauracji</h2>
+        <form action="register_restaurant.php" method="post">
+            <input type="text" name="restaurant_name" placeholder="Nazwa restauracji" required>
+            <input type="text" name="city" placeholder="Miasto" required>
+            <input type="text" name="address" placeholder="Adres" required>
+            <input type="text" name="opening_hours" placeholder="Godziny otwarcia (np. 10:00-22:00)">
+            <input type="email" name="contact_email" placeholder="Email kontaktowy">
+            <input type="text" name="phone" placeholder="Telefon">
+            <input type="email" name="email" placeholder="Email do logowania" required>
+            <input type="password" name="password" placeholder="Hasło" required>
+            <div class="g-recaptcha" data-sitekey="6LdDEWArAAAAACn93aIOrrgySyE9zCGfxqLDjmBr"></div>
+            <button type="submit">Zarejestruj restaurację</button>
+        </form>
+        <button onclick="history.back()" style="display:block;margin:32px auto 0 auto;padding:10px 28px;background:#ff5252;color:#fff;border:none;border-radius:6px;font-size:1rem;cursor:pointer;">Powrót</button>
+    </div>
+    <footer style="text-align:center;margin-top:40px;color:#888;font-size:1rem;">&copy; DishPatch 2025</footer>
+</body>
+</html>

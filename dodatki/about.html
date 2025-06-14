@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>O nas – DishPatch</title>
+  <link rel="icon" type="image/png" href="../images/favicon.png" />
+    <style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: linear-gradient(to bottom right, #00c9a7, #92fe9d);
+    color: #222;
+    font-size: 18px; /* większy rozmiar bazowy */
+  }
+
+  header {
+    text-align: center;
+    padding: 40px 20px 10px;
+  }
+
+  .logo {
+    max-width: 220px;
+    display: block;
+    margin: 0 auto 20px;
+  }
+
+  main {
+    padding: 0 10% 40px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+    color: #003f3f;
+  }
+
+  p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+
+  section {
+    margin-bottom: 40px;
+    animation: fadeIn 0.8s ease-in-out;
+  }
+
+  ul {
+    padding-left: 20px;
+    line-height: 1.6;
+    font-size: 1.05rem;
+  }
+
+  ul li {
+    margin-bottom: 8px;
+  }
+
+  footer {
+    background-color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  footer h3 {
+    font-size: 1.4rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  input, textarea {
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+
+  button {
+    background-color: #00b894;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #01967a;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+    </style>
+</head>
+<body>
+
+  <header>
+    <a href="../index.php"><img src="../images/logo.png" alt="logo" style="height:64px;display:block;margin:auto;"></a>
+    <h1>O nas</h1>
+  </header>
+
+   <main>
+    <section>
+      <h2>Kim jesteśmy?</h2>
+      <p>
+        Jesteśmy zespołem pasjonatów technologii i gastronomii, którzy postanowili stworzyć nowoczesne narzędzie
+        wspierające zarówno restauratorów, jak i klientów. Nasza aplikacja powstała jako odpowiedź na rosnące potrzeby rynku gastronomicznego.
+      </p>
+    </section>
+
+    <section>
+      <h2>Skąd nazwa?</h2>
+      <p>
+        Nazwa DishPatch to gra słów – „dish” (danie) i „dispatch” (wysyłka). Oddaje naszą misję: szybkie i sprawne dostarczanie smacznych posiłków.
+      </p>
+    </section>
+
+    <section>
+      <h2>Czym się zajmujemy?</h2>
+      <p>
+        Oferujemy platformę, która umożliwia zarządzanie rezerwacjami stolików, zamówieniami na wynos i dostawami. 
+        Pomagamy restauracjom zwiększać efektywność i przyciągać nowych klientów, jednocześnie ułatwiając użytkownikom wygodne zamawianie jedzenia.
+      </p>
+    </section>
+
+    <section>
+      <h2>Jaki mamy cel?</h2>
+      <p>
+        Naszym celem jest stworzenie kompleksowego narzędzia online, które wspiera codzienną działalność lokali gastronomicznych, 
+        optymalizuje procesy obsługi i zwiększa zaangażowanie klientów. Chcemy, aby restauratorzy mogli skupić się na jakości potraw,
+        a klienci – na przyjemności jedzenia.
+      </p>
+    </section>
+    <button onclick="history.back()" style="display:block;margin:32px auto 0 auto;padding:10px 28px;background:#ff5252;color:#fff;border:none;border-radius:6px;font-size:1rem;cursor:pointer;">Powrót</button>
+    <footer style="text-align:center;margin-top:40px;color:#888;font-size:1rem;">&copy; DishPatch 2025</footer>
+  </main>
+
+  <footer>
+    <h3>Formularz kontaktowy</h3>
+    <form action="../send.php" method="POST" onsubmit="return showConfirmation()">
+        <input type="text" name="name" placeholder="Twoje imię" required />
+        <input type="email" name="email" placeholder="Twój email" required />
+        <textarea name="message" placeholder="Wiadomość" rows="4" required></textarea>
+        <button type="submit">Wyślij</button>
+    </form>
+    <script>
+        function showConfirmation() {
+        alert("Dziękujemy! Twoja wiadomość została wysłana.");
+        return true; // pozwala wysłać formularz po pokazaniu alertu
+        }
+    </script>
+    <p style="margin-top: 20px;">&copy; DishPatch 2025</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>DishPatch - Panel restauratora</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <style>
+        body { font-family: Arial, sans-serif; background: #f8f8f8; }
+        .logo { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 24px; }
+        .logo img { height: 96px; cursor: pointer; }
+        .container { max-width: 600px; margin: 60px auto; background: #fff; padding: 32px; border-radius: 8px; box-shadow: 0 2px 12px #eee; }
+        h2 { color: #2d8f5a; text-align: center; }
+        .logout-btn { margin-top: 24px; background: #e74c3c; color: #fff; border: none; padding: 12px 24px; border-radius: 6px; font-size: 1rem; cursor: pointer; transition: background 0.2s; }
+        .logout-btn:hover { background: #c0392b; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.php" class="logo"><img src="images/logo.png" alt="logo"></a>
+        <h2>Witaj w panelu restauratora!</h2>
+        <p>Tu możesz zarządzać rezerwacjami i zamówieniami.</p>
+        <form action="logout.php" method="post">
+            <button type="submit" class="logout-btn">Wyloguj się</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,6 +1,0 @@
-Napotkany problem:
--Brak wyświetlenia custom czcionki na stronie po postawieniu na XAMPP strony
-
-Rozwiązanie:
--użycie ścieżki całkowitej dla pliku fontu:
-src: url('/DishPatch/assets/fonts/Ubuntu/Ubuntu-Bold.ttf') format('truetype');
