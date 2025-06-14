@@ -118,8 +118,8 @@ $u = $stmt->fetch();
                     Zarezerwuj ponownie
                   </a>
                 </li>
-                <li><a href="#" style="display:inline-block;padding:12px 24px;background:#278e97;color:#fff;border-radius:6px;text-decoration:none;font-weight:bold;">Moje zamówienia</a></li>
-                <li><a href="#" style="display:inline-block;padding:12px 24px;background:#00b894;color:#fff;border-radius:6px;text-decoration:none;font-weight:bold;">Moje rezerwacje</a></li>
+                <li><a href="user_orders.php" style="display:inline-block;padding:12px 24px;background:#278e97;color:#fff;border-radius:6px;text-decoration:none;font-weight:bold;">Moje zamówienia</a></li>
+                <li><a href="user_reservations.php" style="display:inline-block;padding:12px 24px;background:#00b894;color:#fff;border-radius:6px;text-decoration:none;font-weight:bold;">Moje rezerwacje</a></li>
                 <li><a href="settings.php" style="display:inline-block;padding:12px 24px;background:#ff9800;color:#fff;border-radius:6px;text-decoration:none;font-weight:bold;">Ustawienia konta</a></li>
             </ul>
         </nav>
