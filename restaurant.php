@@ -28,6 +28,47 @@ if ($rows) {
     }
     echo '</table></div>';
 }
+
+// Wyświetl rezerwacje z restaurant_seats
+echo '<div style="max-width:900px;margin:40px auto 0;background:#fff;padding:24px;border-radius:10px;box-shadow:0 2px 12px #eee;">';
+echo '<h3>Rezerwacje stolików</h3>';
+echo '<table style="width:100%;border-collapse:collapse;">';
+echo '<tr><th>Godzina</th><th>Miejsce</th><th>Nazwisko</th><th>Email</th><th>Telefon</th><th>Akcja</th></tr>';
+
+$stmt2 = $pdo->prepare('SELECT id, time_slot, seat_number, nazwisko, email, phone FROM restaurant_seats WHERE restaurant_id = ? AND is_occupied = 1 ORDER BY time_slot, seat_number');
+$stmt2->execute([$rest_id]);
+$reservations = $stmt2->fetchAll();
+
+if ($reservations) {
+    foreach ($reservations as $res) {
+        echo '<tr>';
+        echo '<td>' . htmlspecialchars($res['time_slot']) . '</td>';
+        echo '<td>' . htmlspecialchars($res['seat_number']) . '</td>';
+        echo '<td>' . htmlspecialchars($res['nazwisko']) . '</td>';
+        echo '<td>' . htmlspecialchars($res['email']) . '</td>';
+        echo '<td>' . htmlspecialchars($res['phone']) . '</td>';
+        echo '<td>
+            <form method="post" style="display:inline;">
+                <input type="hidden" name="delete_reservation_id" value="' . intval($res['id']) . '">
+                <button type="submit" onclick="return confirm(\'Na pewno usunąć tę rezerwację?\')">Usuń</button>
+            </form>
+        </td>';
+        echo '</tr>';
+    }
+} else {
+    echo '<tr><td colspan="6" style="text-align:center;">Brak rezerwacji</td></tr>';
+}
+echo '</table></div>';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_reservation_id'])) {
+    $del_id = intval($_POST['delete_reservation_id']);
+    $del_stmt = $pdo->prepare('UPDATE restaurant_seats SET is_occupied = 0, nazwisko = NULL, email = NULL, phone = NULL WHERE id = ? AND restaurant_id = ?');
+    $del_stmt->execute([$del_id, $rest_id]);
+    // Odśwież stronę po usunięciu
+    header("Location: restaurant.php");
+    exit();
+}
+
 // Obsługa sesji 15 minutowej
 $sessionTimeout = 900; // 15 minut w sekundach
 if (!isset($_SESSION['last_activity'])) {
