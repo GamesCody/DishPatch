@@ -1,11 +1,7 @@
 
 # Dish Patch
 Projekt na zaliczenie przedmiotu "Projektowanie serwisów internetowych".
-- [ ] - zrobić backup bazy danych
 
-
-## Do zrobienia:
-`https://github.com/GamesCody/DishPatch/issues/1#issuecomment-2960546570`
 =======
 ---
 # Budowanie projektu
@@ -44,4 +40,24 @@ Zwróć uwagę na to, że możliwe, że trzeba będzie dopasować ścieżkę.
 http://localhost/phpmyadmin/index.php
 ```
 W XAMPP user to root, hasła domyślnie nie potrzeba.
+
+### Konfiguracja projektu
+
+W celu działania poprawnie aplikacji z funkcją wysyłki maila należy skonfigurować XAMPP. 
+W projekcie załączono pliki `sendmail.ini` i `php.ini` do podmiany(folder ini), trzeba tylko pamiętać, że hasło to nie hasło do poczty na maila, a hasło aplikacji. W moim przypadku użyto gmail z weryfikacją dwuetapową.
+
+contact.php, send.php - tu wstawiamy własnego maila aplikacji
+login.php, register_restaurant.php, register_restaurant.html, register_user.html, register_user.php - wstaw klucze recaptha
+
+_____________________________________
+aktywny `user` do testów:
+
+login: dishpatch.sapport@gmail.com
+hasło: DishPatch2025
+
+`restaurants` do testów:
+-login: którykolwiek mail z bazy danych restauratorów
+-hasło: test1234
+
+Poprzez import pliku `foodapp.sql` do phpmyadmin otrzymujemy potrzebną do testowania bazę danych
 
