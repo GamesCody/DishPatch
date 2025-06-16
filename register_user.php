@@ -1,7 +1,7 @@
 <?php
 // register_user.php – obsługa rejestracji użytkownika z reCAPTCHA
 require_once 'config.php';
-$recaptcha_secret = '6LdDEWArAAAAANjWOCPd4TkckLyzFETLeN-P_gIo';
+$recaptcha_secret = '...';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'] ?? '';
     $email = $_POST['email'] ?? '';

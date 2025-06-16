@@ -3,7 +3,7 @@ session_start();
 require_once 'config.php';
 
 // reCAPTCHA config
-$recaptcha_secret = '6LdDEWArAAAAANjWOCPd4TkckLyzFETLeN-P_gIo'; 
+$recaptcha_secret = '...'; 
 
 // Obsługa logowania klasycznego
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form action="login.php" method="post">
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Hasło" required>
-            <div class="g-recaptcha" data-sitekey="6LdDEWArAAAAACn93aIOrrgySyE9zCGfxqLDjmBr"></div>
+            <div class="g-recaptcha" data-sitekey="..."></div>
             <button type="submit">Zaloguj się</button>
         </form>
         <button onclick="history.back()" style="display:block;margin:32px auto 0 auto;padding:10px 28px;background:#ff5252;color:#fff;border:none;border-radius:6px;font-size:1rem;cursor:pointer;">Powrót</button>

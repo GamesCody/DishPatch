@@ -1,6 +1,7 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $to = 'dishpatch.sapport@gmail.com'; 
+    $to = 'mail@gmail.com'; // Zmień na swój adres email
+    
     $name = htmlspecialchars($_POST['name'] ?? '');
     $email = htmlspecialchars($_POST['email'] ?? '');
     $message = htmlspecialchars($_POST['message'] ?? '');

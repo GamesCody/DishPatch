@@ -1,7 +1,7 @@
 <?php
 // register_restaurant.php – obsługa rejestracji restauracji z reCAPTCHA
 require_once 'config.php';
-$recaptcha_secret = '6LdDEWArAAAAANjWOCPd4TkckLyzFETLeN-P_gIo';
+$recaptcha_secret = '...';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $restaurant_name = $_POST['restaurant_name'] ?? '';
     $city = $_POST['city'] ?? '';
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <input type="text" name="phone" placeholder="Telefon" required>
     <input type="email" name="email" placeholder="Email" required>
     <input type="password" name="password" placeholder="Hasło" required>
-    <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div>
+    <div class="g-recaptcha" data-sitekey="..."></div>
     <button type="submit">Zarejestruj</button>
 </form>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
