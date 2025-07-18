@@ -50,10 +50,7 @@ contact.php, send.php - tu wstawiamy własnego maila aplikacji
 login.php, register_restaurant.php, register_restaurant.html, register_user.html, register_user.php - wstaw klucze recaptha
 
 _____________________________________
-aktywny `user` do testów:
 
-login: dishpatch.sapport@gmail.com
-hasło: DishPatch2025
 
 `restaurants` do testów:
 -login: którykolwiek mail z bazy danych restauratorów
