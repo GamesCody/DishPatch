@@ -2,7 +2,6 @@
 # Dish Patch
 Projekt na zaliczenie przedmiotu "Projektowanie serwisów internetowych".
 
-=======
 ---
 # Budowanie projektu
 
